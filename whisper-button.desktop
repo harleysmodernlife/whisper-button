@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Whisper Button
+Comment=Voice transcription with Whisper
+Exec=/home/captain/agent-zero/usr/workdir/whisper_button_app/run.sh
+Icon=/home/captain/agent-zero/usr/workdir/whisper_button_app/whisper_button_icon.svg
+Terminal=false
+Type=Application
+Categories=Utility;AudioVideo;
+StartupNotify=false
