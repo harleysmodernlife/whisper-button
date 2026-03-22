@@ -24,13 +24,15 @@ The app window floats on top of everything else and **never steals focus** from 
 sudo apt-get install libportaudio2
 ```
 
-### Step 2 — Install Python dependencies
+### Step 2 — Run the app
 
 ```bash
-pip3 install --user -r requirements.txt
+./run.sh
 ```
 
-> **First run** will download the Whisper speech model (~75 MB). This only happens once and requires an internet connection. After that, everything is offline.
+That's it. On first launch, `run.sh` automatically creates a Python virtual environment and installs all required packages — no manual `pip install` needed. This avoids conflicts with system-managed Python (PEP 668).
+
+> **First run** will also download the Whisper speech model (~75 MB). This only happens once and requires an internet connection. After that, everything is offline.
 
 ### Step 3 — Add to your app launcher (optional)
 
@@ -98,16 +100,17 @@ pkill -USR1 -f whisper_button_app/app.py
 If the app toggles recording, the shortcut just needs to be configured in GNOME Settings.
 
 **"Whisper not installed" (red status)**
+
+Delete the `.venv` directory and re-run `./run.sh` to reinstall all dependencies:
 ```bash
-pip3 install --user openai-whisper
+rm -rf .venv && ./run.sh
 ```
 
 **No audio / recording errors**
 ```bash
 sudo apt-get install libportaudio2
-pip3 install --user sounddevice numpy scipy
 ```
-Also check that your microphone is not muted in system sound settings.
+Then re-run `./run.sh`. Also check that your microphone is not muted in system sound settings.
 
 **Model download stuck or fails**
 The first-run model download needs an internet connection. Run the app from a terminal (`./run.sh`) to see the download progress. Once downloaded, the model is cached and the app works offline forever.
